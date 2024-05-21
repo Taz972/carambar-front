@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carambar</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <main>
+        <h1>Carambar c'est de la barre</h1>
+        <section class="blague-container">
+            <img src="3-1973-carambarfruit.png" />
+            <div class="container">
+        
+                <a href="#" id="button">Je veux une blague</a>
+                <ul id="content"></ul>
+                <ul id="soluce"></ul>
+        
+            </div>
+        </section>
+    </main>
+    <script>
+        const content = document.querySelector("#content");
+        const soluce = document.querySelector("#soluce");
+        const button = document.querySelector("#button");
+
+        async function Display(){
+            fetch("http://localhost:4000/random/").then(response =>{
+            return response.json();
+            })
+            .then((jokes) => {
+                content.innerText = jokes.content;
+                soluce.innerText = jokes.soluce;
+            })
+        }
+
+        button.addEventListener("click", Display);
+    </script>
+</body>
+</html>
